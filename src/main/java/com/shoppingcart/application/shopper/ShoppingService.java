@@ -10,6 +10,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.CollectionUtils;
 
 @Service
 public class ShoppingService {
@@ -57,4 +58,17 @@ public class ShoppingService {
         return Map.of("Items", shoppingRepository.getItemsByType(req.getType()));
     }
 
+    public ResponseEntity<Map<String, Object>> deleteShoppingItem(final int id) {
+        try {
+            if(shoppingRepository.findById(id).isEmpty()){
+                return new ResponseEntity<>(Map.of("error", "Invalid request"),
+                        HttpStatus.BAD_REQUEST);
+            }
+            shoppingRepository.deleteById(id);
+            return new ResponseEntity<>(Map.of("Item deleted", "success"),
+                    HttpStatus.OK);
+        } catch (Exception ex) {
+            return new ResponseEntity<>(Map.of("error", ex), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }

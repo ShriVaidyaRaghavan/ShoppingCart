@@ -30,4 +30,9 @@ public class ShoppingController {
 		return shoppingService.addToShoppingList(shoppingReq);
 	}
 
+	@DeleteMapping("/shoppingCart/{id}")
+	public ResponseEntity<Map<String, Object>> deleteShoppingItem(@PathVariable int id) {
+		return shoppingService.deleteShoppingItem(id);
+	}
+
 }
