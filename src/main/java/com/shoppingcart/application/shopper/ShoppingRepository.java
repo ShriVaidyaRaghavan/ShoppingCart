@@ -14,4 +14,5 @@ public interface ShoppingRepository extends JpaRepository<ShoppingCartEntity, In
 
     @Query(value = "SELECT * FROM shoppingcart WHERE type = :type", nativeQuery = true)
     List<Map<String, Object>> getItemsByType(@Param("type") String type);
+
 }
