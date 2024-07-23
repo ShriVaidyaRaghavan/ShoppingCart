@@ -1,6 +1,5 @@
 package com.shoppingcart.application.shopper;
 
-import com.shoppingcart.application.shopper.models.ShoppingRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.shoppingcart.application.shopper.models.ShoppingCartEntity;
